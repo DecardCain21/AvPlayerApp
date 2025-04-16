@@ -70,6 +70,12 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
+    // Dependency Injection (Koin)
+    implementation(project.dependencies.platform(libs.koin.bom))
+    implementation(libs.koin.core)
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.koin.android)
+
     // Debug
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
