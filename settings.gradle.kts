@@ -22,3 +22,6 @@ dependencyResolutionManagement {
 rootProject.name = "AvPlayerApp"
 include(":app")
 include(":core")
+include(":features:downloadedtracks")
+include(":features:searchtracks")
+include(":features:playback")

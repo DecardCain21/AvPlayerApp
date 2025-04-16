@@ -50,6 +50,12 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
+    implementation(project(":features:downloadedtracks"))
+    implementation(project(":features:playback"))
+    implementation(project(":features:searchtracks"))
+
+
     // Core
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
