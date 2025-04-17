@@ -5,27 +5,27 @@ import com.google.gson.annotations.SerializedName
 
 public class TrackDto(
     public val id: Long,
-    public val readable: Boolean,
-    public val title: String,
+    public val readable: Boolean?,
+    public val title: String?,
     @SerializedName("title_short")
-    public val titleShort: String,
+    public val titleShort: String?,
     @SerializedName("title_version")
-    public val titleVersion: String,
-    public val link: String,
-    public val duration: Int,
-    public val rank: Long,
+    public val titleVersion: String?,
+    public val link: String?,
+    public val duration: Int?,
+    public val rank: Long?,
     @SerializedName("explicit_lyrics")
-    public val explicitLyrics: Boolean,
+    public val explicitLyrics: Boolean?,
     @SerializedName("explicit_content_lyrics")
-    public val explicitContentLyrics: Int,
+    public val explicitContentLyrics: Int?,
     @SerializedName("explicit_content_cover")
-    public val explicitContentCover: Int,
-    public val preview: String,
+    public val explicitContentCover: Int?,
+    public val preview: String?,
     @SerializedName("md5_image")
-    public val md5Image: String,
-    public val artist: ArtistDto,
-    public val album: AlbumDto,
-    public val type: String
+    public val md5Image: String?,
+    public val artist: ArtistDto?,
+    public val album: AlbumDto?,
+    public val type: String?
 )
 
 public class ArtistDto(
@@ -43,7 +43,8 @@ public class ArtistDto(
     public val pictureXl: String,
     @SerializedName("tracklist")
     public val trackList: String,
-    public val type: String
+    public val type: String,
+    public val radio: Boolean = false
 )
 
 public class AlbumDto(

@@ -19,11 +19,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.avplayerapp.ui.theme.AvPlayerAppTheme
 import com.example.searchtracks.domain.api.GetDeezerTracksUseCase
 import com.example.core.domain.models.Track
+import com.example.searchtracks.domain.api.GetDeezerChartUseCase
 import org.koin.android.ext.android.inject
 
 public class MainActivity : ComponentActivity() {
 
     private val getDeezerTracksUseCase: GetDeezerTracksUseCase by inject()
+    private val getDeezerChartUseCase: GetDeezerChartUseCase by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +34,8 @@ public class MainActivity : ComponentActivity() {
             AvPlayerAppTheme {
                 val tracksState = remember { mutableStateOf<Result<List<Track>>?>(null) }
                 LaunchedEffect(Unit) {
-                    tracksState.value = getDeezerTracksUseCase("Mick Gordon")
+                    /*tracksState.value = getDeezerTracksUseCase("Mick Gordon")*/
+                    tracksState.value = getDeezerChartUseCase()
                 }
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     /*Greeting(

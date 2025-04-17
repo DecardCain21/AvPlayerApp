@@ -14,7 +14,7 @@ public data class Track(
     public val explicitContentCover: Int,
     public val preview: String,
     public val md5Image: String,
-    public val artist: String,
-    public val album: String,
+    public val artistName: String,
+    public val albumTitle: String,
     public val type: String
 )

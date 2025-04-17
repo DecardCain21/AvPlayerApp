@@ -2,7 +2,9 @@ package com.example.searchtracks.di
 
 import com.example.searchtracks.data.api.SearchTracksRepository
 import com.example.searchtracks.data.repository.SearchTracksRepositoryImpl
+import com.example.searchtracks.domain.api.GetDeezerChartUseCase
 import com.example.searchtracks.domain.api.GetDeezerTracksUseCase
+import com.example.searchtracks.domain.usecases.GetDeezerChartUseCaseImpl
 import com.example.searchtracks.domain.usecases.GetDeezerTracksUseCaseImpl
 import com.example.searchtracks.network.TracksApiService
 import com.example.searchtracks.network.TracksNetworkClient
@@ -24,5 +26,7 @@ public val searchTracksModule: Module = module {
     singleOf(::SearchTracksRepositoryImpl) bind SearchTracksRepository::class
 
     singleOf(::GetDeezerTracksUseCaseImpl) bind GetDeezerTracksUseCase::class
+
+    singleOf(::GetDeezerChartUseCaseImpl) bind GetDeezerChartUseCase::class
 
 }
