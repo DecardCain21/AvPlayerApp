@@ -2,7 +2,7 @@ package com.example.searchtracks.domain.usecases
 
 import com.example.searchtracks.data.api.SearchTracksRepository
 import com.example.searchtracks.domain.api.GetDeezerTracksUseCase
-import com.example.searchtracks.domain.models.Track
+import com.example.core.domain.models.Track
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

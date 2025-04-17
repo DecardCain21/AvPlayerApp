@@ -1,6 +1,6 @@
 package com.example.searchtracks.network
 
-import com.example.searchtracks.data.dto.TracksResponseDto
+import com.example.core.network.dto.TracksResponseDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 

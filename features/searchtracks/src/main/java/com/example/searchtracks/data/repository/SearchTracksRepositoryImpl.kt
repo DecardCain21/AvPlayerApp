@@ -1,7 +1,7 @@
 package com.example.searchtracks.data.repository
 
 import com.example.searchtracks.data.api.SearchTracksRepository
-import com.example.searchtracks.domain.models.Track
+import com.example.core.domain.models.Track
 import com.example.searchtracks.network.TracksNetworkClient
 
 public class SearchTracksRepositoryImpl(

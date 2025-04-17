@@ -1,4 +1,4 @@
-package com.example.searchtracks.data.dto
+package com.example.core.network.dto
 
 import com.google.gson.annotations.SerializedName
 

@@ -18,11 +18,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.avplayerapp.ui.theme.AvPlayerAppTheme
 import com.example.searchtracks.domain.api.GetDeezerTracksUseCase
-import com.example.searchtracks.domain.models.Track
+import com.example.core.domain.models.Track
 import org.koin.android.ext.android.inject
 
 public class MainActivity : ComponentActivity() {
+
     private val getDeezerTracksUseCase: GetDeezerTracksUseCase by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
