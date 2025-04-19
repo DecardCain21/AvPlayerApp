@@ -5,7 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
-public abstract class RetrofitNetworkClient() : NetworkClient {
+public abstract class RetrofitNetworkClient : NetworkClient {
     public override suspend fun <T> doRequest(request: suspend () -> T): Result<T> {
         if (!getConnected()) {
             return Result.failure(NetworkError.NoInternet())

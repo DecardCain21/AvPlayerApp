@@ -12,9 +12,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/features" />
-            <option value="$PROJECT_DIR$/features/downloadedtracks" />
-            <option value="$PROJECT_DIR$/features/playback" />
-            <option value="$PROJECT_DIR$/features/searchtracks" />
+            <option value="$PROJECT_DIR$/features/player" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
