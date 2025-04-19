@@ -6,9 +6,9 @@ import android.net.NetworkCapabilities
 import org.koin.java.KoinJavaComponent.getKoin
 
 public fun getConnected(): Boolean {
-    val context: Context = getKoin().get() // TODO
+    val context: Context = getKoin().get()
     val connectivityManager = context
-        ?.getSystemService(
+        .getSystemService(
             Context.CONNECTIVITY_SERVICE
         ) as ConnectivityManager
     val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
