@@ -73,6 +73,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    // Material Icons
+    implementation(libs.androidx.material.icons.extended)
 
     // Dependency Injection (Koin)
     implementation(project.dependencies.platform(libs.koin.bom))
@@ -86,4 +88,5 @@ dependencies {
 
     // Navigation
     implementation(libs.androidx.navigation.compose)
+
 }
