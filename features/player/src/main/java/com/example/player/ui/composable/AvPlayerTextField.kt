@@ -16,47 +16,43 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-public fun CourseTextField(
+public fun AvPlayerTextField(
     modifier: Modifier = Modifier,
-    value: String,
+    value: String = "",
     onValueChange: (String) -> Unit,
     placeholder: String = "",
     roundedCornerShape: RoundedCornerShape = RoundedCornerShape(30.dp),
+    interactionSource: MutableInteractionSource? = null,
     keyboardType: KeyboardType = KeyboardType.Text,
     leadingIcon: @Composable (() -> Unit)? = null,
     containerColor: Color = Color.LightGray
 ) {
 
-    var isFocused by remember { mutableStateOf(false) }
-    val interactionSource = remember { MutableInteractionSource() }
+    val textState = remember { mutableStateOf(TextFieldValue(value)) }
 
-    LaunchedEffect(interactionSource) {
-        interactionSource.interactions.collect { interaction ->
-            when (interaction) {
-                is FocusInteraction.Focus -> isFocused = true
-                is FocusInteraction.Unfocus -> isFocused = false
-            }
-        }
+    LaunchedEffect(value) {
+        textState.value = TextFieldValue(value, selection = TextRange(value.length))
     }
 
     TextField(
         modifier = modifier,
-        value = value,
+        value = textState.value,
         onValueChange = { newValue ->
-            if (newValue.length <= 20) {
-                onValueChange(newValue)
-            }
+            textState.value = newValue.copy(selection = newValue.selection)
+            onValueChange(newValue.text)
         },
         interactionSource = interactionSource,
         singleLine = true,
         textStyle = TextStyle(
-            color = MaterialTheme.colorScheme.onPrimary,
+            color = Color.Black,
             fontSize = 16.sp
         ),
         colors = TextFieldDefaults.colors(

@@ -15,8 +15,8 @@ public fun NavController.navigateToSearchTracksScreen(): Unit =
         }
     }
 
-public fun NavGraphBuilder.searchTracksScreen(testList:List<Track>) {
+public fun NavGraphBuilder.searchTracksScreen() {
     composable(route = SEARCH_SCREEN_ROUTE) {
-        SearchTracksScreen(testList = testList)
+        SearchTracksScreen()
     }
 }

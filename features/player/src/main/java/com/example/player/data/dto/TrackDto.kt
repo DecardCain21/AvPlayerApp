@@ -53,8 +53,8 @@ internal class AlbumDto(
 internal fun TrackDto.convertToTrack(): Track = Track(
     id = id,
     readable = readable ?: false,
-    title = title.orEmpty(),
-    coverUrl = album?.cover.orEmpty(),
+    title = title?:"",
+    coverUrl = album?.cover?:"",
     titleShort = titleShort ?: "",
     titleVersion = titleVersion ?: "",
     link = link ?: "",

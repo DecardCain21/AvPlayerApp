@@ -34,7 +34,7 @@ import com.example.player.ui.searchscreen.navigation.searchTracksScreen
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-public fun Navigation(testList:List<Track>) {
+public fun Navigation() {
     val navController: NavHostController = rememberNavController()
     val noBottomBarScreens = listOf(PLAYER_SCREEN_ROUTE)
 
@@ -121,7 +121,7 @@ public fun Navigation(testList:List<Track>) {
             startDestination = SEARCH_SCREEN_ROUTE,
             modifier = Modifier
         ) {
-            searchTracksScreen(testList = testList)
+            searchTracksScreen()
             downloadedScreen()
             playerScreen()
         }

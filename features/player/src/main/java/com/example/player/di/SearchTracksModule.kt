@@ -9,6 +9,9 @@ import com.example.player.domain.usecases.impl.GetDeezerTracksUseCaseImpl
 import com.example.player.data.network.TracksApiService
 import com.example.player.data.network.TracksNetworkClient
 import com.example.player.data.network.TracksNetworkClientImpl
+import com.example.player.ui.searchscreen.SearchTrackViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
@@ -29,5 +32,7 @@ public val searchTracksModule: Module = module {
     factoryOf(::GetDeezerTracksUseCaseImpl) bind GetDeezerTracksUseCase::class
 
     factoryOf(::GetDeezerChartUseCaseImpl) bind GetDeezerChartUseCase::class
+
+    viewModelOf(::SearchTrackViewModel)
 
 }
