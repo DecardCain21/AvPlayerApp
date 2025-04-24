@@ -1,12 +1,14 @@
 package com.example.player.di
 
 import com.example.player.data.api.PlaybackRepository
-import com.example.player.data.repository.PlaybackRepositoryImpl
-import com.example.player.domain.usecases.GetTrackByIdUseCase
-import com.example.player.domain.usecases.impl.GetTrackByIdUseCaseImpl
 import com.example.player.data.network.GetTrackByIdApiService
 import com.example.player.data.network.PlaybackNetworkClient
 import com.example.player.data.network.PlaybackNetworkClientImpl
+import com.example.player.data.repository.PlaybackRepositoryImpl
+import com.example.player.domain.usecases.GetTrackByIdUseCase
+import com.example.player.domain.usecases.impl.GetTrackByIdUseCaseImpl
+import com.example.player.ui.playerscreen.PlayerScreenViewModel
+import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
@@ -25,5 +27,7 @@ public val playbackModule: Module = module {
     singleOf(::PlaybackRepositoryImpl) bind PlaybackRepository::class
 
     factoryOf(::GetTrackByIdUseCaseImpl) bind GetTrackByIdUseCase::class
+
+    viewModelOf(::PlayerScreenViewModel)
 
 }

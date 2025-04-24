@@ -4,7 +4,11 @@ import android.net.Uri
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
@@ -58,15 +62,31 @@ public fun AudioPlayerWithControls(modifier: Modifier = Modifier, url: String) {
         PlayerView(context).apply {
             player = exoPlayer
         }
-        Button(onClick = {
-            if (isPlaying) {
-                exoPlayer.pause()
-            } else {
-                exoPlayer.play()
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Button(onClick = {
+
+            }) {
+                Icon(
+                    imageVector = Icons.Default.ArrowBack, contentDescription = ""
+                )
             }
-            isPlaying = !isPlaying
-        }) {
-            Text(if (isPlaying) "Pause" else "Play")
+            Button(onClick = {
+                if (isPlaying) {
+                    exoPlayer.pause()
+                } else {
+                    exoPlayer.play()
+                }
+                isPlaying = !isPlaying
+            }) {
+                Text(if (isPlaying) "Pause" else "Play")
+            }
+            Button(onClick = {
+
+            }) {
+                Icon(
+                    imageVector = Icons.Default.ArrowForward, contentDescription = ""
+                )
+            }
         }
 
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -81,7 +101,9 @@ public fun AudioPlayerWithControls(modifier: Modifier = Modifier, url: String) {
                     progress = newProgress
                     exoPlayer.seekTo((newProgress * exoPlayer.duration).toLong())
                 },
-                modifier = Modifier.weight(1f).padding(horizontal = 8.dp)
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(horizontal = 8.dp)
             )
 
             Text(

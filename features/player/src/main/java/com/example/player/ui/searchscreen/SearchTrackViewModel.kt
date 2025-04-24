@@ -3,6 +3,7 @@ package com.example.player.ui.searchscreen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.network.NetworkError
+import com.example.core.utils.debounce
 import com.example.player.domain.usecases.GetDeezerChartUseCase
 import com.example.player.domain.usecases.GetDeezerTracksUseCase
 import com.example.player.ui.searchscreen.state.SearchTrackState
@@ -33,13 +34,29 @@ public class SearchTrackViewModel(
         when (event) {
             SearchTrackUiEvent.ChartState -> loadTracks()
             is SearchTrackUiEvent.InputQuery -> {
-                if (event.query.isNotEmpty()) searchTracks(event.query)
+                if (event.query.isNotEmpty()) {
+                    searchDebounceAction(event.query)
+                } else {
+                    _uiState.value = SearchTrackState(
+                        inputValue = SearchTrackState.Input.Empty,
+                        list = SearchTrackState.Tracks.Empty
+                    )
+                }
             }
         }
 
     }
 
+    private val searchDebounceAction = debounce<String>(
+        delayMillis = 300L,
+        coroutineScope = viewModelScope,
+        useLastParam = true
+    ) { changedText ->
+        searchTracks(changedText)
+    }
+
     private fun searchTracks(query: String) {
+        if (dublicate(query)) return
         viewModelScope.launch {
             val result = getDeezerTracksUseCase(query = query)
             val newState = when (result.exceptionOrNull()) {
@@ -55,16 +72,18 @@ public class SearchTrackViewModel(
                         inputValue = SearchTrackState.Input.Query(text = query),
                         list = SearchTrackState.Tracks.TracksData(listTracks = it)
                     )
-                } ?: SearchTrackState(
-                    inputValue = SearchTrackState.Input.Empty,
-                    list = SearchTrackState.Tracks.Empty
-                )
+                }
             }
-            _uiState.value = uiState.value.copy(
-                inputValue = SearchTrackState.Input.Query(text = query),
-                list = newState.list
-            )
+
+            if (newState != null) {
+                _uiState.value = newState
+            }
+
         }
+    }
+
+    private fun dublicate(query: String): Boolean {
+        return (_uiState.value.inputValue as? SearchTrackState.Input.Query)?.text == query
     }
 
     private fun loadTracks() {

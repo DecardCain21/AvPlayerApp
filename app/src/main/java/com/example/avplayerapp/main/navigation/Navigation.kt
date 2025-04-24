@@ -24,10 +24,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.player.domain.models.Track
 import com.example.player.ui.downloaded.navigation.DOWNLOADED_SCREEN_ROUTE
 import com.example.player.ui.downloaded.navigation.downloadedScreen
 import com.example.player.ui.playerscreen.navigation.PLAYER_SCREEN_ROUTE
+import com.example.player.ui.playerscreen.navigation.navigateToPlayerScreen
 import com.example.player.ui.playerscreen.navigation.playerScreen
 import com.example.player.ui.searchscreen.navigation.SEARCH_SCREEN_ROUTE
 import com.example.player.ui.searchscreen.navigation.searchTracksScreen
@@ -52,7 +52,7 @@ public fun Navigation() {
                             onDrawWithContent {
                                 drawContent()
                                 drawLine(
-                                    color = Color.Gray,
+                                    color = Color.Yellow,
                                     start = Offset(0f, 0f),
                                     end = Offset(size.width, 0f),
                                     strokeWidth = strokeWidth
@@ -66,13 +66,13 @@ public fun Navigation() {
                             title = "Downloaded",
                             icon = Icons.Default.Download,
                             route = DOWNLOADED_SCREEN_ROUTE,
-                            titleColor = Color.Black
+                            titleColor = Color.Yellow
                         ),
                         BottomNavigationItem(
                             title = "Search Tracks",
                             icon = Icons.Default.ContentPasteSearch,
                             route = SEARCH_SCREEN_ROUTE,
-                            titleColor = Color.Black
+                            titleColor = Color.Yellow
                         ),
                     )
 
@@ -98,10 +98,12 @@ public fun Navigation() {
                                 }
                             },
                             colors = NavigationBarItemDefaults.colors(
-                                indicatorColor = Color.LightGray,
-                                disabledTextColor = Color.White,
-                                selectedTextColor = Color.Green,
-                                selectedIconColor = Color.Green,
+                                indicatorColor = Color.White,
+                                disabledTextColor = Color.Red,
+                                selectedTextColor = Color.Yellow,
+                                selectedIconColor = Color.DarkGray,
+                                unselectedTextColor = Color.LightGray,
+                                unselectedIconColor = Color.LightGray
                             ),
                             alwaysShowLabel = true,
                             icon = {
@@ -121,7 +123,7 @@ public fun Navigation() {
             startDestination = SEARCH_SCREEN_ROUTE,
             modifier = Modifier
         ) {
-            searchTracksScreen()
+            searchTracksScreen { navController.navigateToPlayerScreen(it) }
             downloadedScreen()
             playerScreen()
         }
