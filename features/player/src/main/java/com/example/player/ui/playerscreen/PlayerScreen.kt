@@ -25,6 +25,7 @@ public fun PlayerScreen(
     modifier: Modifier = Modifier,
     trackId: Long = 0,
     viewModel: PlayerScreenViewModel = koinViewModel()
+
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     viewModel.loadTrackById(trackId = trackId)

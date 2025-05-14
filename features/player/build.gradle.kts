@@ -76,6 +76,8 @@ dependencies {
     implementation(libs.androidx.media3.ui)
     implementation(libs.androidx.media3.session)
     implementation(libs.androidx.material3.android)
+    // Needed MediaSessionCompat.Token
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
     // Navigation
     implementation(libs.androidx.navigation.compose)

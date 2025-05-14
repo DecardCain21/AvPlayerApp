@@ -69,7 +69,7 @@ public class SearchTrackViewModel(
 
                 else -> result.getOrNull()?.let {
                     SearchTrackState(
-                        inputValue = SearchTrackState.Input.Query(text = query),
+                        inputValue = SearchTrackState.Input.Query(text = query),//Удалить text = query?Нигде не использую
                         list = SearchTrackState.Tracks.TracksData(listTracks = it)
                     )
                 }

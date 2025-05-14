@@ -1,5 +1,8 @@
 package com.example.player.ui.searchscreen
 
+import android.content.Context
+import android.content.Intent
+import android.os.Build
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,13 +17,16 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.player.domain.models.Track
 import com.example.player.ui.composable.AvPlayerTextField
 import com.example.player.ui.composable.AvPlayerTrackItem
+import com.example.player.ui.playernot.service.AvMediaService
 import com.example.player.ui.searchscreen.state.SearchTrackState
 import com.example.player.ui.searchscreen.state.SearchTrackUiEvent
 import org.koin.androidx.compose.koinViewModel
@@ -31,6 +37,7 @@ public fun SearchTracksScreen(
     navigateToPlayerScreen: (Long) -> Unit
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
+    var isServiceRunning = rememberSaveable() { mutableSetOf(false) }
 
     Column(
         modifier = Modifier

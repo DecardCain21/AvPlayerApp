@@ -16,6 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -41,8 +43,8 @@ public fun AudioPlayerWithControls(modifier: Modifier = Modifier, url: String) {
     }
 
     var isPlaying by remember { mutableStateOf(false) }
-    var progress by remember { mutableStateOf(0f) }
-    var duration by remember { mutableStateOf(0L) }
+    var progress by remember { mutableFloatStateOf(0f) }
+    var duration by remember { mutableLongStateOf(0L) }
 
     LaunchedEffect(isPlaying) {
         while (isPlaying) {

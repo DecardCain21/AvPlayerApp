@@ -83,6 +83,15 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.androidx.runtime.android)
 
+    // Media Playback (ExoPlayer)
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.ui)
+    implementation(libs.androidx.media3.session)
+    implementation(libs.androidx.material3.android)
+    implementation(libs.androidx.browser)
+    // Needed MediaSessionCompat.Token
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
