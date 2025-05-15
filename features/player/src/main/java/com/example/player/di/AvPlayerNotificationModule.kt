@@ -9,6 +9,7 @@ import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.trackselection.DefaultTrackSelector
 import androidx.media3.session.MediaSession
 import com.example.player.ui.playernot.notification.AvPlayerNotificationManager
+import com.example.player.ui.playernot.service.AvMediaServiceHandler
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
@@ -48,7 +49,7 @@ public fun avPlayerNotificationModule(application: Application): Module = module
     }
 
     // ServiceHandler (Singleton)
-    /*single {
-        JetAudioServiceHandler(get<ExoPlayer>())
-    }*/
+    single {
+        AvMediaServiceHandler(get<ExoPlayer>())
+    }
 }

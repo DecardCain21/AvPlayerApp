@@ -29,12 +29,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
+import androidx.media3.common.MediaItem
+import androidx.media3.common.MediaMetadata
 import androidx.media3.common.util.UnstableApi
 import com.example.avplayerapp.ui.theme.AvPlayerAppTheme
+import com.example.player.domain.models.Track
 import com.example.player.ui.playernot.service.AvMediaService
+import com.example.player.ui.playernot.service.AvMediaServiceHandler
+import org.koin.android.ext.android.inject
 
 public class MainActivity : ComponentActivity() {
     private var isServiceRunning = false
+    private val avMediaServiceHandler: AvMediaServiceHandler by inject()
 
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,6 +77,18 @@ public class MainActivity : ComponentActivity() {
                                     notify(notificationId, builder.build())
                                     notificationId++ // Увеличиваем ID для следующего уведомления
                                 }*/
+                                avMediaServiceHandler.addMediaItem(
+                                    MediaItem.Builder()
+                                        .setUri("https://cdnt-preview.dzcdn.net/api/1/1/3/b/5/0/3b5a5013027d0eb81daec7412a9a0aec.mp3?hdnea=exp=1747320838~acl=/api/1/1/3/b/5/0/3b5a5013027d0eb81daec7412a9a0aec.mp3*~data=user_id=0,application_id=42~hmac=1f23ad9c9f694b9457d00cd0d511afaa62d3b1b56a2c1204d52868ef59e37a91")
+                                        .setMediaMetadata(
+                                            MediaMetadata.Builder()
+                                                .setAlbumArtist("audio.artist")
+                                                .setDisplayTitle("audio.title")
+                                                .setSubtitle("audio.displayName")
+                                                .build()
+                                        )
+                                        .build()
+                                )
                                 startService()
                             }
                         ) {
