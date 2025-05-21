@@ -1,5 +1,6 @@
 package com.example.player.ui.playerscreen
 
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -9,6 +10,8 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -25,9 +28,9 @@ public fun PlayerScreen(
     modifier: Modifier = Modifier,
     trackId: Long = 0,
     viewModel: PlayerScreenViewModel = koinViewModel()
-
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
+    val isServiceRunning by rememberSaveable { mutableStateOf(false) }
     viewModel.loadTrackById(trackId = trackId)
 
     Column(
@@ -39,7 +42,15 @@ public fun PlayerScreen(
         when (val currentStateTrack = state.trackState) {
             PlayerScreenState.TrackState.EmptyTrack -> null//TODO()
             is PlayerScreenState.TrackState.TrackData -> {
-                TrackContent(currentStateTrack.track)
+                with(currentStateTrack) {
+                    viewModel.addMediaItemService(
+                        url = track.preview,
+                        albumArtist = track.albumTitle,
+                        displayTitle = track.title,
+                        subTitle = track.artistName
+                    )
+                    TrackContent(track)
+                }
             }
         }
     }

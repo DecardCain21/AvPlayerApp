@@ -7,6 +7,7 @@ import com.example.player.data.network.PlaybackNetworkClientImpl
 import com.example.player.data.repository.PlaybackRepositoryImpl
 import com.example.player.domain.usecases.GetTrackByIdUseCase
 import com.example.player.domain.usecases.impl.GetTrackByIdUseCaseImpl
+import com.example.player.ui.playernot.api.AvServiceProvider
 import com.example.player.ui.playerscreen.PlayerScreenViewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.module.Module
